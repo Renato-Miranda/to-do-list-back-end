@@ -25,6 +25,11 @@ class TarefasController{
                 }
             })
         })
+        app.post("/tarefas", (req, res) => {
+            res.status(200).json({
+                "usuario01": "postou um post kk"
+            })
+        })
     }
 }
 

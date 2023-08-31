@@ -1,15 +1,15 @@
-class UsuariosController{
+class UsuariosController {
     /**
      * método de rotas da entidade usuário recebendo como argumento a instancia do express.
      * @param {Express} app 
      */
-    static rotas(app){
+    static rotas(app) {
         app.get("/", (req, res) => {
             res.send(`
                 <h1>Hello Friend</h1>
             `)
         })
-        
+
         app.get("/usuarios", (req, res) => {
             res.status(200).json({
                 "usuarios": {
@@ -32,11 +32,15 @@ class UsuariosController{
                         idade: 27
                     },
                 }
-        
+
             })
         })
-        
+        app.post("/usuarios", (req, res) => {
+            const body = req.body
+            res.status(200).send(body)
+        })
+
     }
 }
 
-export default  UsuariosController
+export default UsuariosController

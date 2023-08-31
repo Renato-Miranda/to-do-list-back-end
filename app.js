@@ -8,6 +8,7 @@ const port = process.env.PORT | 3000
 app.listen(port, () => {
     console.log('Server listening on');
 })
+app.use(express.json())
 
 UsuariosController.rotas(app)
 TarefasController.rotas(app)
