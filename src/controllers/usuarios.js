@@ -1,43 +1,31 @@
+import UsuariosModel from "../models/UsuariosModel.js"
+import UsuariosMetodos from "../utils/UsuariosMetodos.js"
+
 class UsuariosController {
     /**
      * método de rotas da entidade usuário recebendo como argumento a instancia do express.
      * @param {Express} app 
      */
     static rotas(app) {
-        app.get("/", (req, res) => {
-            res.send(`
-                <h1>Hello Friend</h1>
-            `)
-        })
-
         app.get("/usuarios", (req, res) => {
+            const usuarios = UsuariosMetodos.buscarTodos()
             res.status(200).json({
                 "usuarios": {
                     "usuario01": {
                         nome: "Walter",
-                    },
-                    "usuario02": {
-                        nome: 'Matheus',
-                        email: 'matheus@email.com',
-                        idade: 25
-                    },
-                    "usuario03": {
-                        nome: 'Lucas',
-                        email: 'lucas@email.com',
-                        idade: 26
-                    },
-                    "usuario04": {
-                        nome: 'Martins',
-                        email: 'martins@email.com',
-                        idade: 27
-                    },
+                    }
                 }
 
             })
         })
         app.post("/usuarios", (req, res) => {
-            const body = req.body
-            res.status(200).send(body)
+            const body = Object.values(req.body)
+            const usuario = new UsuariosModel(...body)
+            UsuariosMetodos.inserisUsuario(usuario)
+            res.status(200).json({
+                error: false,
+                mensagem: 'usuario criado com sucesso'
+            })
         })
 
     }
