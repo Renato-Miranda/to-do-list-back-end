@@ -9,14 +9,7 @@ class UsuariosController {
     static rotas(app) {
         app.get("/usuarios", (req, res) => {
             const usuarios = UsuariosMetodos.buscarTodos()
-            res.status(200).json({
-                "usuarios": {
-                    "usuario01": {
-                        nome: "Walter",
-                    }
-                }
-
-            })
+            res.status(200).json(usuarios)
         })
         app.post("/usuarios", (req, res) => {
             const body = Object.values(req.body)

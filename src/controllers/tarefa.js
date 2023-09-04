@@ -1,3 +1,7 @@
+import TarefasModel from "../models/TarefasModel.js"
+import TarefasMetodos from "../utils/TarefasMetodos.js"
+
+
 class TarefasController{
     /**
      * método de rotas da entidade usuário recebendo como argumento a instancia do express.
@@ -6,28 +10,16 @@ class TarefasController{
     static rotas(app){
 
         app.get("/tarefas", (req, res) => {
-            res.status(200).json({
-                "tarefas": {
-                    "tarefa01": {
-                        usuario: "Walter",
-                        nome: "Comer Repolho",
-                        descrição: "Comer Repolho com polenta",
-                        data: "10/12/2025",
-                        status: true
-                    },
-                    "tarefa02": {
-                        usuario: "Walter",
-                        nome: "aula de inglês",
-                        descrição: "Assistir uma aula de inglês",
-                        data: "10/12/2077",
-                        status: true
-                    },
-                }
-            })
+            const tarefas = TarefasMetodos.buscarTarefa()
+            res.status(200).json(tarefas)
         })
         app.post("/tarefas", (req, res) => {
+            const body = Object.values(req.body)
+            const tarefa = new TarefasMetodos(...body)
+            TarefasMetodos.inserirTarefa(tarefa)
             res.status(200).json({
-                "usuario01": "postou um post kk"
+                error: false,
+                message: 'Tarefa criada com sucesso'
             })
         })
     }
