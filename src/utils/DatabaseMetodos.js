@@ -1,4 +1,3 @@
-import Database from "../database/Database.js"
 import DataBase from "../database/Database.js"
 
 class DatabaseMetodos{
@@ -7,6 +6,12 @@ class DatabaseMetodos{
     }
     static buscar(entidade){
         return DataBase[entidade]
+    }
+    static buscarPorId(entidade, id){
+        return DataBase[entidade][id]
+    }
+    static deletarPorId(entidade, id){
+        delete DataBase[entidade][id]
     }
 }
 

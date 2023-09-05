@@ -1,4 +1,5 @@
 import UsuariosModel from "../models/UsuariosModel.js"
+import ValidacaoServices from "../services/ValidacaoServices.js"
 import UsuariosMetodos from "../utils/UsuariosMetodos.js"
 
 class UsuariosController {
@@ -11,6 +12,25 @@ class UsuariosController {
             const usuarios = UsuariosMetodos.buscarTodos()
             res.status(200).json(usuarios)
         })
+
+        app.get("/usuarios/:id", (req, res) => {
+            const id = req.params.id
+            const resposta = UsuariosMetodos.buscarUsuarioPorId(id)
+            res.status(200).json(resposta)
+        })
+
+        app.delete("/usuarios/:id", (req, res) => {
+            const id = req.params.id
+            const isValid = ValidacaoServices.validarExistencia(id)
+            if(isValid){
+                UsuariosMetodos.deletarUsuarioPorId(id)
+                res.status(200).json({
+                    error: false, message: 'Excluido com sucesso'
+                })
+            }
+            res.status(404).json({error: true, message: 'Usuarios não encontrado'})
+        })
+
         app.post("/usuarios", (req, res) => {
             const body = Object.values(req.body)
             const usuario = new UsuariosModel(...body)

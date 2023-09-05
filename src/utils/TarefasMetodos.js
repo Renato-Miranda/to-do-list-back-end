@@ -10,6 +10,12 @@ class TarefasMetodos extends DatabaseMetodos {
     static buscarTarefa(){
         return this.buscar(TAREFAS_TABELA)
     }
+    static buscarTarefaPorId(id){
+        return this.buscarPorId(TAREFAS_TABELA, id)
+    }
+    static deletarTarefaPorId(id){
+        delete this.deletarPorId(TAREFAS_TABELA, id)
+    }
 }
 
 export default TarefasMetodos;
