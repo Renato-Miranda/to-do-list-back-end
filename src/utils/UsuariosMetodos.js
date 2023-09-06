@@ -17,6 +17,9 @@ class UsuariosMetodos extends DatabaseMetodos {
     static deletarUsuarioPorId(id){
         delete this.deletarPorId(USUARIOS_TABELA, id) 
     }
+    static atualizarUsuarioPorId(id, data){
+        this.atualizarPorId(USUARIOS_TABELA, id, data)
+    }
 }
 
 export default UsuariosMetodos; 

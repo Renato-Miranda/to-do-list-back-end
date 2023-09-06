@@ -13,6 +13,9 @@ class DatabaseMetodos{
     static deletarPorId(entidade, id){
         delete DataBase[entidade][id]
     }
+    static atualizarPorId(entidade, id, data){
+        DataBase[entidade][id] = data
+    }
 }
 
 export default DatabaseMetodos
