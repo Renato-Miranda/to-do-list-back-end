@@ -8,8 +8,8 @@ class UsuariosController {
      * @param {Express} app 
      */
     static rotas(app) {
-        app.get("/usuarios", (req, res) => {
-            const usuarios = UsuariosMetodos.buscarTodos()
+        app.get("/usuarios", async (req, res) => {
+            const usuarios = await UsuariosMetodos.buscarTodos()
             res.status(200).json(usuarios)
         })
 
