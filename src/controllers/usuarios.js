@@ -31,18 +31,24 @@ class UsuariosController {
             res.status(404).json({error: true, message: 'Usuarios não encontrado para o id ${id}'})
         })
 
-        app.post("/usuarios", (req, res) => {
+        app.post("/usuarios", async (req, res) => {
             const body = Object.values(req.body)
             const isValid = ValidacaoServices.validaCamposUsuario(...body)
             if(isValid){
             const usuario = new UsuariosModel(...body)
-            UsuariosMetodos.inserisUsuario(usuario)
-            res.status(200).json({
+            try {
+                await UsuariosMetodos.inserisUsuario(usuario)
+            res.status(201).json({
                 error: false,
                 mensagem: 'usuario criado com sucesso'
             })
-        }
+            } catch (error) {
+                res.status(503).json({error: true, message: 'Servidor indisponível no momento'})
+            }         
+        }else{
             res.status(400).json({error: true, message: 'Campos inválidos'})
+        }
+            
         })
 
         app.put("/usuarios/:id", (req, res) => {

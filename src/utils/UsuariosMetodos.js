@@ -5,8 +5,13 @@ import DatabaseMetodos  from "./DatabaseMetodos.js";
 
 const  USUARIOS_TABELA = "USUARIOS"
 class UsuariosMetodos extends DatabaseMetodos {
-    static inserisUsuario(data){
-        this.inserir(USUARIOS_TABELA, data)
+    static async inserisUsuario(data){
+        const dataValues = Object.values(data)
+        const query = `
+        INSERT INTO USUARIOS (NOME, EMAIL, TELEFONE) VALUES (?, ?, ?) 
+        `
+      const result =  await this.inserir(query, dataValues)
+      return result 
     }
     static async buscarTodos(){
         return await this.buscar(USUARIOS_TABELA)

@@ -1,10 +1,19 @@
 import { resolve } from "path"
 import DataBase from "../database/Database.js"
 import { rejects } from "assert"
+import { log } from "console"
 
 class DatabaseMetodos{
-    static inserir(entidade, data){
-        DataBase[entidade].push(data)
+    static inserir(query, data){
+         return new Promise((resolve, reject)=>{
+            DataBase.run(query, ...data, (error)=>{
+                if(error){
+                    console.log(error);
+                    reject(error)
+                }
+                resolve({error: false})
+            })
+         })
     }
     static  buscar(entidade){
         const query = `
