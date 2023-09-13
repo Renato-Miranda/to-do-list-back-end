@@ -1,4 +1,4 @@
-import TarefasMetodos from "../utils/TarefasMetodos.js"
+import TarefasMetodos from "../DAO/TarefasMetodos.js"
 import TarefasModel from "../models/TarefasModel.js"
 import ValidacaoServices from "../services/ValidacaoServices.js"
 

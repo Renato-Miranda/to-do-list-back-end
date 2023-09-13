@@ -1,6 +1,6 @@
 import UsuariosModel from "../models/UsuariosModel.js"
 import ValidacaoServices from "../services/ValidacaoServices.js"
-import UsuariosMetodos from "../utils/UsuariosMetodos.js"
+import UsuariosMetodos from "../DAO/UsuariosMetodos.js"
 
 class UsuariosController {
     /**

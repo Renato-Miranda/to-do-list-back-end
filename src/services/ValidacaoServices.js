@@ -1,4 +1,4 @@
-import UsuariosMetodos from "../utils/UsuariosMetodos.js";
+import UsuariosMetodos from "../DAO/UsuariosMetodos.js";
 
 class ValidacaoServices {
     static validarExistencia(id) {
