@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import UsuariosController from "./src/controllers/usuarios.js"
 import TarefasController from "./src/controllers/tarefa.js";
 
@@ -9,6 +10,8 @@ app.listen(port, () => {
     console.log('Server listening on');
 })
 app.use(express.json())
+
+app.use(cors("*"))
 
 UsuariosController.rotas(app)
 TarefasController.rotas(app)
