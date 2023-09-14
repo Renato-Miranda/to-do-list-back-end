@@ -7,7 +7,9 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
+    "dev": "nodemon ./app.js",
+    "database": "node ./src/database/createAndPopulate.js",
+    "build": "npm rum databe & npm start"
   },
   "author": "Renato-Miranda",
   "license": "MIT",
